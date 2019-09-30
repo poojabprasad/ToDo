@@ -56,7 +56,7 @@ public class ToDoController {
 
     @RequestMapping(value = "/todo", method = RequestMethod.PATCH)
     public ResponseEntity<ToDo> updateToDo(@RequestBody ToDo toDo) throws ToDoException {
-        logger.info("Updting the todo : {}", toDo);
+        logger.info("Updating the todo : {}", toDo);
         Optional<ToDo> toDo1 = toDoService.getToDoById(toDo.getId());
 
         if (!toDo1.isPresent())
