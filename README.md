@@ -1,55 +1,102 @@
-#### Spring Boot - TODO application
+# ToDo Application
 
-##### Let's start by understanding the dependencies requirement
+A Java application to store and retrieve todo list/tasks.
 
-Step 1: The minimal dependency required for setting a Web endpoint using Spring boot is
-```		
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-web</artifactId>
-</dependency>
+## Getting Started
+
+Below instructions will tell you what are the prerequisites that
+needs to be installed, configurations that has to be done to run the project.
+
+### Prerequisites
+
+Below are the softwares that needs to be installed as a dependency
+
+```
+Java 11
+
+sudo apt-get install software-properties-common
+sudo add-apt-repository ppa:openjdk-r/ppa
+sudo apt-get update
+sudo apt install openjdk-11-jdk
+
+
+Maven
+
+sudo apt-get install maven
 ```
 
-Step 2: Adding an in-memory database requires the following dependencies
-```xml
-<dependency>
-    <groupId>com.h2database</groupId>
-    <artifactId>h2</artifactId>
-    <scope>runtime</scope>
-</dependency>
-```
-Spring Data dependency which comes with JPA for Hibernate ORM
-```xml
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-data-jpa</artifactId>
-</dependency>
+### Installing
+
+A step by step series of examples that tell you how to get a development env running
+
+1 . Git clone the repo to any Linux machine.
+
+2 . Cd to the directory and follow the below steps to build the packages
 ```
 
-MySql Connector to connect with the DB(in-memory in this case)
 
-```xml
-<dependency>
-    <groupId>mysql</groupId>
-    <artifactId>mysql-connector-java</artifactId>
-    <scope>runtime</scope>
-</dependency>
+### Building the packages
+
+Below are the steps to build the JAR file and to start the backend server
+
+```bash
+mvn package -DskipTests
+
+./mvnw spring-boot:run
 ```
 
-Step 3: Understanding the code
+This will start the application on port 8080
 
-Creating End Points:
+Access the api's by navigating to
 
-*   `@RestController` defines the class which holds the endpoints
-*   `@RequesetMapping` defines the type of HTTP verb for the 
-*   `@Service` holds the implementation of the service which is `@Autowired` in the controller
-*   `@Entity` is the POJO of the database table
+```bash
+http://<ip address of container>:8080/
+```
 
-Step 4: Execute the following commands:
+The application uses the in memeory database "h2". The console can be accessed by
 
-*   `mvn clean compile package`
-*   `java -jar target/demo-0.0.1-SNAPSHOT.jar`
+```bash
+http://localhost:8080/h2-console
+```
 
-Step 5:
-*   Hit http://localhost:8080/todo to see the magic
+The crednetials can be found in application.properties
+
+
+### Accessing the end points
+
+Below are the end points which are accessible
+
+1 . To create a new todo list, send a post request to
+```bash
+http://localhost:8080/todo
+```
+
+2 . To list all Todo's navigate to
+```bash
+http://localhost:8080/todo
+```
+
+3 . To list a particular todo item, send a get request to
+```bash
+http://localhost:8080/todo/<id>
+```
+
+4 . To list all completed todo's navigate to
+```bash
+http://localhost:8080/todo/completed
+```
+
+5 . To list all non completed todo's navigate to
+```bash
+http://localhost:8080/todo/not-completed
+```
+
+6 . To delete a particular todo, send delete request to
+```bash
+http://localhost:8080/todo/delete/<id>
+```
+
+## Built With
+
+* [Maven](https://maven.apache.org/) - Dependency Management
 
